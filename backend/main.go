@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/sauravkarn541/bahikhata/internal/config"
+	"github.com/sauravkarn541/bahikhata/internal/routes"
 )
 
 var log = config.GetLogger()
@@ -14,16 +15,7 @@ func main() {
 	config.InitJWTParams(app.Env)
 
 	env := app.Env
-	log.Info("Starting server on port " + env.AppPort)
 
-	// Initialize the router
-	// r := gin.Default()
-
-	// r.GET("/ping", func(c *gin.Context) {
-	// 	c.JSON(200, gin.H{
-	// 		"message": "pong",
-	// 	})
-	// })
-
-	// r.Run() // Default listens on :8080
+	router := routes.SetupRouter(&app)
+	router.Run(env.AppHost + ":" + env.AppPort)
 }
