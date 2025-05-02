@@ -1,16 +1,26 @@
-import { useState } from "react";
-import { Link } from "react-router";
-import { EyeCloseIcon, EyeIcon } from "../../icons";
-import Label from "../form/Label";
-import Input from "../form/input/InputField";
-import Checkbox from "../form/input/Checkbox";
-import Button from "../ui/button/Button";
+"use client";
+import Checkbox from "@/components/form/input/Checkbox";
+import Input from "@/components/form/input/InputField";
+import Label from "@/components/form/Label";
+import Button from "@/components/ui/button/Button";
+import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "@/icons";
+import Link from "next/link";
+import React, { useState } from "react";
 
 export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   return (
-    <div className="flex flex-col flex-1">
+    <div className="flex flex-col flex-1 lg:w-1/2 w-full">
+      <div className="w-full max-w-md sm:pt-10 mx-auto mb-5">
+        <Link
+          href="/"
+          className="inline-flex items-center text-sm text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+        >
+          <ChevronLeftIcon />
+          Back to dashboard
+        </Link>
+      </div>
       <div className="flex flex-col justify-center flex-1 w-full max-w-md mx-auto">
         <div>
           <div className="mb-5 sm:mb-8">
@@ -51,11 +61,17 @@ export default function SignInForm() {
                 Sign in with Google
               </button>
               <button className="inline-flex items-center justify-center gap-3 py-3 text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-7 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10">
-                <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="48px">
-                  <path fill="#039be5" d="M24 5A19 19 0 1 0 24 43A19 19 0 1 0 24 5Z"/>
-                  <path fill="#fff" d="M26.572,29.036h4.917l0.772-4.995h-5.69v-2.73c0-2.075,0.678-3.915,2.619-3.915h3.119v-4.359c-0.548-0.074-1.707-0.236-3.897-0.236c-4.573,0-7.254,2.415-7.254,7.917v3.323h-4.701v4.995h4.701v13.729C22.089,42.905,23.032,43,24,43c0.875,0,1.729-0.08,2.572-0.194V29.036z"/>
+                <svg
+                  width="21"
+                  className="fill-current"
+                  height="20"
+                  viewBox="0 0 21 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M15.6705 1.875H18.4272L12.4047 8.75833L19.4897 18.125H13.9422L9.59717 12.4442L4.62554 18.125H1.86721L8.30887 10.7625L1.51221 1.875H7.20054L11.128 7.0675L15.6705 1.875ZM14.703 16.475H16.2305L6.37054 3.43833H4.73137L14.703 16.475Z" />
                 </svg>
-                Sign in with FB
+                Sign in with X
               </button>
             </div>
             <div className="relative py-3 sm:py-5">
@@ -74,7 +90,7 @@ export default function SignInForm() {
                   <Label>
                     Email <span className="text-error-500">*</span>{" "}
                   </Label>
-                  <Input placeholder="info@gmail.com" />
+                  <Input placeholder="info@gmail.com" type="email" />
                 </div>
                 <div>
                   <Label>
@@ -90,9 +106,9 @@ export default function SignInForm() {
                       className="absolute z-30 -translate-y-1/2 cursor-pointer right-4 top-1/2"
                     >
                       {showPassword ? (
-                        <EyeIcon className="fill-gray-500 dark:fill-gray-400 size-5" />
+                        <EyeIcon className="fill-gray-500 dark:fill-gray-400" />
                       ) : (
-                        <EyeCloseIcon className="fill-gray-500 dark:fill-gray-400 size-5" />
+                        <EyeCloseIcon className="fill-gray-500 dark:fill-gray-400" />
                       )}
                     </span>
                   </div>
@@ -105,7 +121,7 @@ export default function SignInForm() {
                     </span>
                   </div>
                   <Link
-                    to="/reset-password"
+                    href="/reset-password"
                     className="text-sm text-brand-500 hover:text-brand-600 dark:text-brand-400"
                   >
                     Forgot password?
@@ -123,7 +139,7 @@ export default function SignInForm() {
               <p className="text-sm font-normal text-center text-gray-700 dark:text-gray-400 sm:text-start">
                 Don&apos;t have an account? {""}
                 <Link
-                  to="/signup"
+                  href="/signup"
                   className="text-brand-500 hover:text-brand-600 dark:text-brand-400"
                 >
                   Sign Up
